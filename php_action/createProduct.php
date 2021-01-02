@@ -16,7 +16,7 @@ if($_POST) {
 
 	$type = explode('.', $_FILES['productImage']['name']);
 	$type = $type[count($type)-1];		
-	$url = '../assests/images/stock/'.uniqid(rand()).'.'.$type;
+	$url = '../assests/images/'.uniqid(rand()).'.'.$type;
 	if(in_array($type, array('gif', 'jpg', 'jpeg', 'png', 'JPG', 'GIF', 'JPEG', 'PNG'))) {
 		if(is_uploaded_file($_FILES['productImage']['tmp_name'])) {			
 			if(move_uploaded_file($_FILES['productImage']['tmp_name'], $url)) {
@@ -33,7 +33,9 @@ if($_POST) {
 				}
 
 			}	else {
-				return false;
+              $returnJson=array("message"=>"something went wrong");
+            
+				return json_encode($returnJson);
 			}	// /else	
 		} // if
 	} // if in_array 		

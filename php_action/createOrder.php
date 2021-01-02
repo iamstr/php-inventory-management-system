@@ -22,9 +22,10 @@ if($_POST) {
   $paymentPlace 				= $_POST['paymentPlace'];
   $gstn 				= $_POST['gstn'];
   $userid 				= $_SESSION['userId'];
+  $agent 				= $_POST['agent'];
 
 				
-	$sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status,payment_place, gstn,order_status,user_id) VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$paymentPlace,$gstn, 1,$userid)";
+	$sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status,payment_place, gstn,order_status,user_id,agent_id) VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$paymentPlace,'$gstn', 1,$userid, '$agent')";
 	
 	$order_id;
 	$orderStatus = false;
@@ -33,7 +34,9 @@ if($_POST) {
 		$valid['order_id'] = $order_id;	
 
 		$orderStatus = true;
-	}
+	}else {
+  echo  "Error: " . $sql . "<br>" . $connect->error;
+}
 
 		
 	// echo $_POST['productName'];

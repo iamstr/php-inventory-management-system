@@ -8,6 +8,7 @@
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assests/bootstrap/css/styles.css">
 	<!-- bootstrap theme-->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap-theme.min.css">
 	<!-- font awesome -->
@@ -87,6 +88,7 @@
 			<?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
             <li id="topNavSetting"><a href="setting.php"> <i class="glyphicon glyphicon-wrench"></i> Setting</a></li>
             <li id="topNavUser"><a href="user.php"> <i class="glyphicon glyphicon-wrench"></i> Add User</a></li>
+             <li id="topNavUser"><a href="agent.php"> <i class="glyphicon glyphicon-wrench"></i> Add Agent</a></li>
 <?php } ?>              
             <li id="topNavLogout"><a href="logout.php"> <i class="glyphicon glyphicon-log-out"></i> Logout</a></li>            
           </ul>

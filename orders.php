@@ -175,10 +175,14 @@ if($_GET['o'] == 'add') {
 				    </div>
 				  </div> <!--/form-group-->	
 				  <div class="form-group">
-				    <label for="vat" class="col-sm-3 control-label gst">GST 18%</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="vat" name="gstn" readonly="true" />
+				    <label for="vat" class="col-sm-3 control-label gst">VAT 16%</label>
+				    <div class="col-sm-9 d-flex">
+				      <input type="hidden" class="form-control" id="vat" name="gstn" readonly="true" />
 				      <input type="hidden" class="form-control" id="vatValue" name="vatValue" />
+				      <label for="male">Yes</label>
+				      <input type="radio" id="male" name="gstn"  class="form-control"  value="yes" checked>
+				      <input type="radio" id="female" name="gstn" value="no" class="form-control" >
+				      <label for="female">No</label>
 				    </div>
 				  </div>	  		  
 			  </div> <!--/col-md-6-->
@@ -224,8 +228,28 @@ if($_GET['o'] == 'add') {
 				    <div class="col-sm-9">
 				      <select class="form-control" name="paymentPlace" id="paymentPlace">
 				      	<option value="">~~SELECT~~</option>
-				      	<option value="1">In Gujarat</option>
-				      	<option value="2">Out Of Gujarat</option>
+				      	<option value="1">In Nairobi</option>
+				      	<option value="2">Out Of Nairobi</option>
+				      </select>
+				    </div>
+				  </div> <!--/form-group--> 
+                  <div class="form-group">
+				    <label for="selectedAgent" class="col-sm-3 control-label">Agent </label>
+				    <div class="col-sm-9">
+				      <select class="form-control" name="agent" id="selectedAgent">
+				      	<option value="">~~SELECT~~</option>
+				      	<?php
+			  							$agentsSql = "SELECT * FROM  agents";
+			  							$agentsData = $connect->query($agentsSql);
+
+			  							while($row = $agentsData->fetch_array()) {									 		
+			  								
+			  								
+
+			  								echo "<option value='".$row['agent_id']."'   >".$row['agent_fullname']."</option>";
+										 	} // /while 
+
+			  						?>
 				      </select>
 				    </div>
 				  </div> <!--/form-group-->							  
@@ -427,14 +451,14 @@ if($_GET['o'] == 'add') {
 				    </div>
 				  </div> <!--/form-group-->	
 				  <div class="form-group">
-				    <label for="vat" class="col-sm-3 control-label gst"><?php if($data[13] == 2) {echo "IGST 18%";} else echo "GST 18%"; ?></label>
+				    <label for="vat" class="col-sm-3 control-label gst"><?php if($data[13] == 2) {echo "VAT 16%";} else echo "VAT 16%"; ?></label>
 				    <div class="col-sm-9">
 				      <input type="text" class="form-control" id="vat" name="vat" disabled="true" value="<?php echo $data[5] ?>"  />
 				      <input type="hidden" class="form-control" id="vatValue" name="vatValue" value="<?php echo $data[5] ?>"  />
 				    </div>
 				  </div> 
 				  <div class="form-group">
-				    <label for="gstn" class="col-sm-3 control-label gst">G.S.T.IN</label>
+				    <label for="gstn" class="col-sm-3 control-label gst">V.A.T</label>
 				    <div class="col-sm-9">
 				      <input type="text" class="form-control" id="gstn" name="gstn" value="<?php echo $data[14] ?>"  />
 				    </div>
@@ -496,10 +520,10 @@ if($_GET['o'] == 'add') {
 				      	<option value="">~~SELECT~~</option>
 				      	<option value="1" <?php if($data[13] == 1) {
 				      		echo "selected";
-				      	} ?>  >In Gujarat</option>
+				      	} ?>  >In Nairobi</option>
 				      	<option value="2" <?php if($data[13] == 2) {
 				      		echo "selected";
-				      	} ?> >Out Gujarat</option>
+				      	} ?> >Out Nairobi</option>
 				      </select>
 				    </div>
 				  </div>							  

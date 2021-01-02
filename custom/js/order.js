@@ -1,14 +1,24 @@
 var manageOrderTable;
+var vat,vatYes;
 
 $(document).ready(function() {
+   vatYes=$('.d-flex input[type=radio]').val(); 
+  console.log(vatYes)
+  
+  $('.d-flex input[type=radio]').on('change', function(e) {
+    vatYes=e.target.value
+  subAmount()
+});
+  
+  
 	$("#paymentPlace").change(function(){
 		if($("#paymentPlace").val() == 2)
 		{
-			$(".gst").text("IGST 18%");
+			$(".gst").text("ONRB 16%");
 		}
 		else
 		{
-			$(".gst").text("GST 18%");	
+			$(".gst").text("NRB 16%");	
 		}
 });
 
@@ -208,6 +218,7 @@ $(document).ready(function() {
 			var discount = $("#discount").val();
 			var paymentType = $("#paymentType").val();
 			var paymentStatus = $("#paymentStatus").val();		
+			var agent = $("#selectedAgent").val();		
 
 			// form validation 
 			if(orderDate == "") {
@@ -258,6 +269,12 @@ $(document).ready(function() {
 			} else {
 				$('#paymentStatus').closest('.form-group').addClass('has-success');
 			} // /else
+if(agent == "") {
+				$("#selectedAgent").after('<p class="text-danger"> The Payment Status field is required </p>');
+				$('#selectedAgent').closest('.form-group').addClass('has-error');
+			} else {
+				$('#selectedAgent').closest('.form-group').addClass('has-success');
+			} // /else
 
 
 			// array validation
@@ -302,7 +319,7 @@ $(document).ready(function() {
 	   	} // for       	
 	   	
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
+			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus && agent) {
 				if(validateProduct == true && validateQuantity == true) {
 					// create order button
 					// $("#createOrderBtn").button('loading');
@@ -574,13 +591,24 @@ function subAmount() {
 	// sub total
 	$("#subTotal").val(totalSubAmount);
 	$("#subTotalValue").val(totalSubAmount);
-
-	// vat
-	var vat = (Number($("#subTotal").val())/100) * 18;
+  console.log("called...")
+if(vatYes==="yes"){
+  vat= (Number($("#subTotal").val())/100) * 16;
 	vat = vat.toFixed(2);
 	$("#vat").val(vat);
 	$("#vatValue").val(vat);
-
+   console.log("the valueeee is yees")
+  
+}
+  
+  else{
+     vat =0;
+	vat = vat.toFixed(2);
+	$("#vat").val(vat);
+    console.log("we are hereeeee")
+	$("#vatValue").val(vat);
+    
+  }
 	// total amount
 	var totalAmount = (Number($("#subTotal").val()) + Number($("#vat").val()));
 	totalAmount = totalAmount.toFixed(2);
