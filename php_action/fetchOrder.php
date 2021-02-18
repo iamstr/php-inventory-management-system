@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1";
+$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id WHERE  order_status = 1";
 $result = $connect->query($sql);
 
 
@@ -23,9 +23,9 @@ if($result->num_rows > 0) {
 
 
  	// active 
- 	if($row[4] == 1) { 		
+ 	if($row[12] == 1) { 		
  		$paymentStatus = "<label class='label label-success'>Full Payment</label>";
- 	} else if($row[4] == 2) { 		
+ 	} else if($row[12] == 2) { 		
  		$paymentStatus = "<label class='label label-info'>Advance Payment</label>";
  	} else { 		
  		$paymentStatus = "<label class='label label-warning'>No Payment</label>";

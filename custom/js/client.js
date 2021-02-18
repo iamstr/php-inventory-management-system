@@ -2,10 +2,10 @@ var manageUserTable;
 
 $(document).ready(function() {
 	// top nav bar 
-	$('#topNavAgent').addClass('active');
+	$('#topNavClient').addClass('active');
 	// manage product data table
 	manageUserTable = $('#manageUserTable').DataTable({
-		'ajax': 'php_action/fetchAgent.php',
+		'ajax': 'php_action/fetchClient.php',
 		'order': []
 	});
 
@@ -38,47 +38,98 @@ $(document).ready(function() {
 
 		// submit product form
 		$("#submitUserForm").unbind('submit').bind('submit', function() {
-			// form validation
-			var userName = $("#userName").val();
-			var upassword = $("#upassword").val();
-			var uemail = $("#uemail").val();
-	
-			if(userName == "") {
-				$("#userName").after('<p class="text-danger">User name field is required</p>');
-				$('#userName').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#userName").find('.text-danger').remove();
-				// success out for form 
-				$("#userName").closest('.form-group').addClass('has-success');	  	
-			}
-          
-            if(uemail == "") {
-                  $("#uemail").after('<p class="text-danger">User name field is required</p>');
-                  $('#uemail').closest('.form-group').addClass('has-error');
-              }	else {
-                  // remov error text field
-                  $("#uemail").find('.text-danger').remove();
-                  // success out for form 
-                  $("#uemail").closest('.form-group').addClass('has-success');	  	
-              }	// /else
+				// form validation
+					var username = $("#add_userName").val();
+					var email = $("#add_uemail").val();
+                    var tel1 = $("#add_tel1").val();
+					var tel2 = $("#add_tel2").val();
+					var website = $("#add_website").val();
+				    var address = $("#add_address").val();
+					var location = $("#add_location").val();
+					var pin = $("#add_pin").val();
+                    var floor = $("#add_floor").val();
+					var county = $("#add_county").val();
+					var city = $("#add_city").val();
+					var street = $("#add_city").val();
+					var contact = $("#add_contact").val();
+					var designation = $("#add_designation").val();
+					var company = $("#add_company").val();
+					var personal = $("#add_personal_id").val();
+					var code = $("#add_code").val();
+					var phone = $("#add_phone").val();
+								
 
+					if(username == "") {
+						$("#edituserName").after('<p class="text-danger">User Name field is required</p>');
+						$('#edituserName').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#edituserName").find('.text-danger').remove();
+						// success out for form 
+						$("#edituserName").closest('.form-group').addClass('has-success');	  	
+					}	// /else
 
+					if(pin == "") {
+						$("#add_pin").after('<p class="text-danger">Password field is required</p>');
+						$('#add_pin').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#add_pin").find('.text-danger').remove();
+						// success out for form 
+						$("#add_pin").closest('.form-group').addClass('has-success');	  	
+					}	// /else	
+                  
+                    if(tel1 == "") {
+						$("#add_tel1").after('<p class="text-danger">User Name field is required</p>');
+						$('#add_tel1').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#add_tel1").find('.text-danger').remove();
+						// success out for form 
+						$("#add_tel1").closest('.form-group').addClass('has-success');	  	
+					}	// /else
 
-			if(upassword == "") {
-				$("#upassword").after('<p class="text-danger">Password field is required</p>');
-				$('#upassword').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#upassword").find('.text-danger').remove();
-				// success out for form 
-				$("#upassword").closest('.form-group').addClass('has-success');	  	
-			}	// /else
+					if(county == "") {
+						$("#add_county").after('<p class="text-danger">Password field is required</p>');
+						$('#add_county').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#add_county").find('.text-danger').remove();
+						// success out for form 
+						$("#add_county").closest('.form-group').addClass('has-success');	  	
+					}	// /else
 
-			
-				// /else
+					
+ 
+                    if(street == "") {
+						$("#add_street").after('<p class="text-danger">User Name field is required</p>');
+						$('#add_street').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#add_street").find('.text-danger').remove();
+						// success out for form 
+						$("#add_street").closest('.form-group').addClass('has-success');	  	
+					}	// /else
 
-			if(upassword && userName && uemail) {
+					if(location == "") {
+						$("#add_location").after('<p class="text-danger">Password field is required</p>');
+						$('#add_location').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#add_location").find('.text-danger').remove();
+						// success out for form 
+						$("#add_location").closest('.form-group').addClass('has-success');	  	
+					}	// /else
+
+					
+
+					
+
+					
+
+									
+
+					if(location && username && street && tel1 && pin && county) {
 				// submit loading button
 				$("#createUserBtn").button('loading');
 
@@ -154,7 +205,7 @@ function editUser(userid = null) {
 		$('.div-result').addClass('div-hide');
 
 		$.ajax({
-			url: 'php_action/fetchSelectedAgent.php',
+			url: 'php_action/fetchSelectedClient.php',
 			type: 'post',
 			data: {"userid": userid},
 			dataType: 'json',
@@ -168,21 +219,47 @@ function editUser(userid = null) {
 			
 
 				// product id 
-				$(".editUserFooter").append('<input type="hidden" name="userid" id="userid" value="'+response.agent_id+'" />');				
-				$(".editUserPhotoFooter").append('<input type="hidden" name="userid" id="userid" value="'+response.agent_id+'" />');				
+				$(".editUserFooter").append('<input type="hidden" name="userid" id="userid" value="'+response.client_id+'" />');				
+				$(".editUserPhotoFooter").append('<input type="hidden" name="userid" id="userid" value="'+response.client_id+'" />');				
 				
 				// product name
-				$("#edituserName").val(response.fullname);
-				// quantity
-				//$("#editPassword").val(response.quantity);
+				
+                $("#userName").val(response.client_name);
+	            $("#uemail").val(response.client_email);
+                $("#tel1").val(response.client_tel1);
+	            $("#tel2").val(response.client_tel2);
+			    $("#website").val(response.client_website);
+				$("#address").val(response.client_address);
+				$("#location").val(response.client_location); 
+                $("#pin").val(response.client_pin);
+                $("#floor").val(response.client_floor);
+		        $("#county").val(response.client_county);
+                $("#city").val(response.client_city);
+		        $("#street").val(response.client_street);
+		        $("#code").val(response.secondary_id);
+                $("#contact").val(response.contact_person);
+				$("#designation").val(response.contact_designation);
+				$("#company").val(response.contact_ID);
+				$("#personal_id").val(response.contact_ID);
+				$("#phone").val(response.contact_number);
+				
 				
 				// update the product data function
 				$("#editUserForm").unbind('submit').bind('submit', function() {
 
 					// form validation
-					var username = $("#edituserName").val();
-					var userpassword = $("#editPassword").val();
-					var useremail = $("#editEmail").val();
+					var username = $("#userName").val();
+					var email = $("#uemail").val();
+                    var tel1 = $("#tel1").val();
+					var tel2 = $("#tel2").val();
+					var website = $("#website").val();
+				    var address = $("#address").val();
+					var location = $("#location").val();
+					var pin = $("#pin").val();
+                    var floor = $("#floor").val();
+					var county = $("#county").val();
+					var city = $("#city").val();
+					var street = $("#street").val();
 								
 
 					if(username == "") {
@@ -195,14 +272,56 @@ function editUser(userid = null) {
 						$("#edituserName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
 
-					if(userpassword == "") {
-						$("#editPassword").after('<p class="text-danger">Password field is required</p>');
-						$('#editPassword').closest('.form-group').addClass('has-error');
+					if(pin == "") {
+						$("#pin").after('<p class="text-danger">Password field is required</p>');
+						$('#pin').closest('.form-group').addClass('has-error');
 					}	else {
 						// remov error text field
-						$("#editPassword").find('.text-danger').remove();
+						$("#pin").find('.text-danger').remove();
 						// success out for form 
-						$("#editPassword").closest('.form-group').addClass('has-success');	  	
+						$("#pin").closest('.form-group').addClass('has-success');	  	
+					}	// /else	
+                  
+                    if(tel1 == "") {
+						$("#tel1").after('<p class="text-danger">User Name field is required</p>');
+						$('#tel1').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#tel1").find('.text-danger').remove();
+						// success out for form 
+						$("#tel1").closest('.form-group').addClass('has-success');	  	
+					}	// /else
+
+					if(county == "") {
+						$("#county").after('<p class="text-danger">Password field is required</p>');
+						$('#county').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#county").find('.text-danger').remove();
+						// success out for form 
+						$("#county").closest('.form-group').addClass('has-success');	  	
+					}	// /else
+
+					
+ 
+                    if(street == "") {
+						$("#street").after('<p class="text-danger">User Name field is required</p>');
+						$('#street').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#street").find('.text-danger').remove();
+						// success out for form 
+						$("#street").closest('.form-group').addClass('has-success');	  	
+					}	// /else
+
+					if(location == "") {
+						$("#location").after('<p class="text-danger">Password field is required</p>');
+						$('#location').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#location").find('.text-danger').remove();
+						// success out for form 
+						$("#location").closest('.form-group').addClass('has-success');	  	
 					}	// /else
 
 					
@@ -213,7 +332,7 @@ function editUser(userid = null) {
 
 									
 
-					if(userpassword && username) {
+					if(location && username && street && tel1 && pin && county) {
 						// submit loading button
 						$("#editUserBtn").button('loading');
 
@@ -361,7 +480,7 @@ function removeUser(userid = null) {
 			// loading remove button
 			$("#removeProductBtn").button('loading');
 			$.ajax({
-				url: 'php_action/removeAgent.php',
+				url: 'php_action/removeClient.php',
 				type: 'post',
 				data: {userid: userid},
 				dataType: 'json',

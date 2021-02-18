@@ -70,17 +70,23 @@ if($_GET['o'] == 'add') {
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
-			    <label for="clientName" class="col-sm-2 control-label">Client Name</label>
+			    <label for="clientName1" class="col-sm-2 control-label">Client Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" />
+			       <select class="form-control" name="clientName1" id="clientName1"  >
+			  						<option value="0">~~SELECT~~</option>
+			  						<?php
+			  							$sql = "SELECT * FROM clients";
+			  							$query = $connect->query($sql);
+
+			  							while($row = $query->fetch_array()) {									 		
+			  								echo "<option value='".$row['client_id']."' id='changeClient".$row['client_id']."'>".$row['client_name']."</option>";
+										 	} // /while 
+
+			  						?>
+		  						</select>  
 			    </div>
 			  </div> <!--/form-group-->
-			  <div class="form-group">
-			    <label for="clientContact" class="col-sm-2 control-label">Client Contact</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" autocomplete="off" />
-			    </div>
-			  </div> <!--/form-group-->			  
+			 
 
 			  <table class="table" id="productTable">
 			  	<thead>
@@ -298,8 +304,7 @@ if($_GET['o'] == 'add') {
 
   			<?php $orderId = $_GET['i'];
 
-  			$sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.client_contact, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders 	
-					WHERE orders.order_id = {$orderId}";
+  			$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id WHERE orders.order_id = {$orderId}";
 
 				$result = $connect->query($sql);
 				$data = $result->fetch_row();
@@ -314,13 +319,13 @@ if($_GET['o'] == 'add') {
 			  <div class="form-group">
 			    <label for="clientName" class="col-sm-2 control-label">Client Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" value="<?php echo $data[2] ?>" />
+			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" value="<?php echo $data[2] ?>" disabled />
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
 			    <label for="clientContact" class="col-sm-2 control-label">Client Contact</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" autocomplete="off" value="<?php echo $data[3] ?>" />
+			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" autocomplete="off" value="<?php echo $data[3] ?>"  disabled/>
 			    </div>
 			  </div> <!--/form-group-->			  
 
@@ -457,12 +462,14 @@ if($_GET['o'] == 'add') {
 				      <input type="hidden" class="form-control" id="vatValue" name="vatValue" value="<?php echo $data[5] ?>"  />
 				    </div>
 				  </div> 
-				  <div class="form-group">
+<!--				  <div class="form-group">
 				    <label for="gstn" class="col-sm-3 control-label gst">V.A.T</label>
 				    <div class="col-sm-9">
 				      <input type="text" class="form-control" id="gstn" name="gstn" value="<?php echo $data[14] ?>"  />
 				    </div>
-				  </div><!--/form-group-->		  		  
+				  </div>
+				  
+				  form-group-->		  		  
 			  </div> <!--/col-md-6-->
 
 			  <div class="col-md-6">

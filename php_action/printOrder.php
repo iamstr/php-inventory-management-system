@@ -4,23 +4,23 @@ require_once 'core.php';
 
 $orderId = $_POST['orderId'];
 
-$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_place,gstn FROM orders WHERE order_id = $orderId";
+$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id WHERE   order_id = $orderId";
 
 $orderResult = $connect->query($sql);
 $orderData = $orderResult->fetch_array();
 
-$orderDate = $orderData[0];
-$clientName = $orderData[1];
-$clientContact = $orderData[2]; 
-$subTotal = $orderData[3];
-$vat = $orderData[4];
-$totalAmount = $orderData[5]; 
-$discount = $orderData[6];
-$grandTotal = $orderData[7];
-$paid = $orderData[8];
-$due = $orderData[9];
-$payment_place = $orderData[10];
-$gstn = $orderData[11];
+$orderDate = $orderData[1];
+$clientName = $orderData[2];
+$clientContact = $orderData[3]; 
+$subTotal = $orderData[4];
+$vat = $orderData[5];
+$totalAmount = $orderData[6]; 
+$discount = $orderData[7];
+$grandTotal = $orderData[8];
+$paid = $orderData[9];
+$due = $orderData[10];
+$payment_place = $orderData[11];
+$gstn = $orderData[12];
 
 
 $orderItemSql = "SELECT order_item.product_id, order_item.rate, order_item.quantity, order_item.total,
@@ -39,7 +39,7 @@ $orderItemResult = $connect->query($orderItemSql);
                      <td colspan="5" style="text-align:center;color: red;text-decoration: underline;    font-size: 25px;">TAX INVOICE</td>
                   </tr>
                   <tr>
-                     <td rowspan="8" colspan="2" style="border-left:1px solid black;" background-image="logo.jpg"><img src="/logo.jpg" alt="logo" width="250px;"></td>
+                     <td rowspan="8" colspan="2" style="border-left:1px solid black;" background-image="url("http://localhost/php-inventory-management-system/emitek_logo%20(1).png")"><img src="http://localhost/php-inventory-management-system/emitek_logo%20(1).png" alt="logo" width="250px;"></td>
                      <td colspan="3" style=" text-align: right;">ORIGINAL</td>
                   </tr>
                   <tr>
@@ -92,7 +92,7 @@ $orderItemResult = $connect->query($orderItemSql);
                         <table align="left" cellpadding="0" cellspacing="0" style="width: 100%">
                            <tbody>
                               <tr>
-                                 <td style="border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: black;border-top: 1px solid black;border-right: 1px solid black;color: red;">Bill No : .</td>
+                                 <td style="border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: black;border-top: 1px solid black;border-right: 1px solid black;color: red;">Bill No :     '.$orderId.' </td>
                               </tr>
                               <tr>
                                  <td style="border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: black;border-right: 1px solid black;    color: red;">Date: '.$orderDate.'</td>

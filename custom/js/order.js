@@ -43,8 +43,8 @@ $(document).ready(function() {
 			$('.text-danger').remove();
 				
 			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
-			var clientContact = $("#clientContact").val();
+			var clientName = $("#clientName1").val();
+			
 			var paid = $("#paid").val();
 			var discount = $("#discount").val();
 			var paymentType = $("#paymentType").val();
@@ -58,20 +58,14 @@ $(document).ready(function() {
 				$('#orderDate').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientName == "") {
-				$("#clientName").after('<p class="text-danger"> The Client Name field is required </p>');
-				$('#clientName').closest('.form-group').addClass('has-error');
+			if(clientName == "" || clientName=="0") {
+				$("#clientName1").after('<p class="text-danger"> The Client Name field is required </p>');
+				$('#clientName1').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientName').closest('.form-group').addClass('has-success');
+				$('#clientName1').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientContact == "") {
-				$("#clientContact").after('<p class="text-danger"> The Contact field is required </p>');
-				$('#clientContact').closest('.form-group').addClass('has-error');
-			} else {
-				$('#clientContact').closest('.form-group').addClass('has-success');
-			} // /else
-
+			
 			if(paid == "") {
 				$("#paid").after('<p class="text-danger"> The Paid field is required </p>');
 				$('#paid').closest('.form-group').addClass('has-error');
@@ -103,6 +97,8 @@ $(document).ready(function() {
 
 			// array validation
 			var productName = document.getElementsByName('productName[]');				
+			
+          
 			var validateProduct;
 			for (var x = 0; x < productName.length; x++) {       			
 				var productNameId = productName[x].id;	    	
@@ -120,7 +116,9 @@ $(document).ready(function() {
 	      } else {      	
 		    	validateProduct = false;
 	      }          
-	   	} // for       		   	
+	   	} // for  
+          
+          		   	
 	   	
 	   	var quantity = document.getElementsByName('quantity[]');		   	
 	   	var validateQuantity;
@@ -143,7 +141,7 @@ $(document).ready(function() {
 	   	} // for       	
 	   	
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
+			if(orderDate  && clientName && paid && discount && paymentType && paymentStatus) {
 				if(validateProduct == true && validateQuantity == true) {
 					// create order button
 					// $("#createOrderBtn").button('loading');
@@ -319,7 +317,7 @@ if(agent == "") {
 	   	} // for       	
 	   	
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus && agent) {
+			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus ) {
 				if(validateProduct == true && validateQuantity == true) {
 					// create order button
 					// $("#createOrderBtn").button('loading');

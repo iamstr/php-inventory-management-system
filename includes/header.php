@@ -48,7 +48,7 @@
       </button>
       <!-- <a class="navbar-brand" href="#">Brand</a> -->
 	  <a class="navbar-brand" href="#" style="padding:0px;">
-                    <img src="logo.png" alt="">
+                    <img src="emitek_logo (1).png" alt="" width="100" height="50">
                 </a>
     </div>
 
@@ -57,7 +57,7 @@
 
       <ul class="nav navbar-nav navbar-right">        
 
-      	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>  Dashboard</a></li>        
+      	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-dashboard"></i>  Dashboard</a></li>        
         <?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
         <li id="navBrand"><a href="brand.php"><i class="glyphicon glyphicon-btc"></i>  Brand</a></li>        
 		<?php } ?>
@@ -66,6 +66,10 @@
 		<?php } ?>
 		<?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
         <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Product </a></li> 
+		<?php } ?>
+      
+       <?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
+        <li id="navPurchase"><a href="purchase.php"> <i class="glyphicon glyphicon-list-alt"></i> Purchase </a></li> 
 		<?php } ?>
 		
         <li class="dropdown" id="navOrder">
@@ -88,7 +92,8 @@
 			<?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
             <li id="topNavSetting"><a href="setting.php"> <i class="glyphicon glyphicon-wrench"></i> Setting</a></li>
             <li id="topNavUser"><a href="user.php"> <i class="glyphicon glyphicon-wrench"></i> Add User</a></li>
-             <li id="topNavUser"><a href="agent.php"> <i class="glyphicon glyphicon-wrench"></i> Add Agent</a></li>
+             <li id="topNavAgent"><a href="agent.php"> <i class="glyphicon glyphicon-wrench"></i> Add Agent</a></li>
+             <li id="topNavClient"><a href="client.php"> <i class="glyphicon glyphicon-wrench"></i> Add Client</a></li>
 <?php } ?>              
             <li id="topNavLogout"><a href="logout.php"> <i class="glyphicon glyphicon-log-out"></i> Logout</a></li>            
           </ul>
