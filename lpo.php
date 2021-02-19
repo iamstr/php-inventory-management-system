@@ -100,13 +100,15 @@ if(isset($_COOKIE["lpo"]) || isset($_GET['lpo'])){
 }
 
 .lpo{
-/*  display:flex;*/
+  display:flex;
 /*  margin:0 10em;*/
 /*  flex-direction:column;*/
   flex-direction: column;
     /* justify-content: center; */
-    align-items: center;
-    width: fit-content;
+/*    align-items: center;*/
+/*    width: fit-content;*/
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .lpo-purchase,.lpo-address,.lpo-address,.lpo-initiated,.lpo-approved,#customers,.lpo-header{
