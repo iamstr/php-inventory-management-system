@@ -41,12 +41,21 @@ $(document).ready(function() {
 	        mywindow.document.write('<html><head><title>Order Report Slip</title>');        
 	        mywindow.document.write('</head><body>');
 	        mywindow.document.write(response);
+	        mywindow.document.write('<button id="printButton">Print</button>');
 	        mywindow.document.write('</body></html>');
 
 	        mywindow.document.close(); // necessary for IE >= 10
 	        mywindow.focus(); // necessary for IE >= 10
-
-	        mywindow.print();
+            const printButton=mywindow.document.querySelector("#printButton")
+            console.log(printButton)
+            printButton.addEventListener("click" ,function(e){
+              e.target.style.display="none"
+               mywindow.print();
+              console.log(e.target)
+              
+              
+            })
+//	        mywindow.print();
 //	        mywindow.close();
 				} // /success
 			});	// /ajax

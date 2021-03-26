@@ -3,9 +3,9 @@
 //password ---- 1nY+0O*lZwYk35
 //database ---- emitekcl_inventory
 $localhost = "localhost";
-$username = "emitekcl";
-$password = "1nY+0O*lZwYk35";
-$dbname = "emitekcl_inventory";
+$username = "root";
+$password = "";
+$dbname = "store";
 //$store_url = "http://localhost/php-inventory-management-system/";
 $store_url = "/";
 // db connection

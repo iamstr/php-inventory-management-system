@@ -25,6 +25,7 @@
 					<thead>
 						<tr>
 							<th style="width:10%;">Photo</th>							
+							<th>Product Code</th>
 							<th>Product Name</th>
 							<th>Rate</th>							
 							<th>Quantity</th>
@@ -92,6 +93,13 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="rate" placeholder="Rate" name="rate" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->	     	        
+	        <div class="form-group">
+	        	<label for="rate" class="col-sm-3 control-label">Product Code: </label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="code" placeholder="PX21" name="code" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	     	        
 

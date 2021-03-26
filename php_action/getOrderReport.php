@@ -13,7 +13,7 @@ if($_POST) {
 	$format = DateTime::createFromFormat('m/d/Y',$endDate);
 	$end_date = $format->format("Y-m-d");
 
-	$sql = "SELECT * FROM orders WHERE order_date >= '$start_date' AND order_date <= '$end_date' and order_status = 1";
+	$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id  WHERE order_date >= '$start_date' AND order_date <= '$end_date' and order_status = 1";
 	$query = $connect->query($sql);
 
 	$table = '
@@ -31,7 +31,7 @@ if($_POST) {
 			$table .= '<tr>
 				<td><center>'.$result['order_date'].'</center></td>
 				<td><center>'.$result['client_name'].'</center></td>
-				<td><center>'.$result['client_contact'].'</center></td>
+				<td><center>'.$result['client_tel1'].'</center></td>
 				<td><center>'.$result['grand_total'].'</center></td>
 			</tr>';	
 			$totalAmount += $result['grand_total'];
