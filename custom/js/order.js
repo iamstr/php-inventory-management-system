@@ -375,26 +375,39 @@ function printOrder(orderId = null) {
 			type: 'post',
 			data: {orderId: orderId},
 			dataType: 'text',
-			success:function(response) {
-				
-				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-        mywindow.document.write('<html><head><title>Order Invoice</title>');        
-        mywindow.document.write('</head><body>');
-        mywindow.document.write(response);
-        mywindow.document.write('</body></html>');
+						success:function(response) {
+					var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
+	        mywindow.document.write('<html><head><title>Order Report Slip</title>');        
+	        mywindow.document.write('</head><body>');
+           
+	        mywindow.document.write(response);
+	        mywindow.document.write('<button id="printButton">Print</button>');
+	        mywindow.document.write('</body></html>');
 
-        mywindow.document.close(); // necessary for IE >= 10
-        mywindow.focus(); // necessary for IE >= 10
-        mywindow.resizeTo(screen.width, screen.height);
-setTimeout(function() {
-    mywindow.print();
-    mywindow.close();
-}, 1250);
-
-        //mywindow.print();
-        //mywindow.close();
-				
-			}// /success function
+	        mywindow.document.close(); // necessary for IE >= 10
+	        mywindow.focus(); // necessary for IE >= 10
+             mywindow.resizeTo(screen.width, screen.height);
+            const printButton=mywindow.document.querySelector("#printButton")
+            $(printButton).css({
+              
+              padding:"1rem 8rem",
+              fontSize:"1rem",
+              backgroundColor:"orangered",
+              color:"darkgreen",
+              border:"none",
+              borderRadius:"7px"
+            })
+            console.log(printButton)
+            printButton.addEventListener("click" ,function(e){
+              e.target.style.display="none"
+               mywindow.print();
+              console.log(e.target)
+              
+              
+            })
+//	        mywindow.print();
+//	        mywindow.close();
+				} // /success
 		}); // /ajax function to fetch the printable order
 	} // /if orderId
 } // /print order function

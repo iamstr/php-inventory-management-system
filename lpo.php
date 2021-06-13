@@ -111,6 +111,12 @@ if(isset($_COOKIE["lpo"]) || isset($_GET['lpo'])){
   width: 100%;
 }
 
+   .lpo-address-wrapper{
+     
+     flex-direction: row;
+     display: flex;
+     justify-content: space-between;
+   }
 .lpo-purchase,.lpo-address,.lpo-address,.lpo-initiated,.lpo-approved,#customers,.lpo-header{
   
   border:1px solid black;
@@ -170,7 +176,7 @@ if(isset($_COOKIE["lpo"]) || isset($_GET['lpo'])){
 }
 .lpo-address{
   
-  width: 300px;
+/*  min-width: 300px;*/
 }
 
 .lpo-initiated-by{
@@ -206,11 +212,13 @@ if(isset($_COOKIE["lpo"]) || isset($_GET['lpo'])){
   </div>
 
   <div class="lpo-body">
-    <div class="lpo-address">
+   <div class="lpo-address-wrapper">
+     
+     <div class="lpo-address">
       <p>Emitek Cleaning Limited</p>
-      <p>P.O BOX:<span class="text">  20123-00100</span> </p>
-      <p>Tel: <span class="text">     0722453040</span></p>
-      <p>Email:<span class="text">    smshabaan@gmail.com</span> </p>
+      <p>Address:<span class="text">  Utalii House, 2nd Floor, Utalii St, Nairobi</span> </p>
+      <p>Tel: <span class="text">  0720 699969</span></p>
+      <p>Email:<span class="text">    info@emitekcleaning.co.ke</span> </p>
       <p>Website: <span class="text"> emitekcleaning.co.ke</span></p>
     </div>
 
@@ -229,6 +237,8 @@ if(isset($_COOKIE["lpo"]) || isset($_GET['lpo'])){
       <p>Contact Person: <span class="text">  <?php echo $clientContact1;?></span></p>
     </div>
 
+   </div>
+    
     <table class="lpo-order" id="customers">
       <tr>
         <th>No.</th>

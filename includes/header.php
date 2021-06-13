@@ -91,10 +91,11 @@
           <ul class="dropdown-menu">    
 			<?php if(isset($_SESSION['userId']) && $_SESSION['userId']==1) { ?>
             <li id="topNavSetting"><a href="setting.php"> <i class="glyphicon glyphicon-wrench"></i> Setting</a></li>
-            <li id="topNavUser"><a href="user.php"> <i class="glyphicon glyphicon-wrench"></i> Add User</a></li>
-             <li id="topNavAgent"><a href="agent.php"> <i class="glyphicon glyphicon-wrench"></i> Add Agent</a></li>
-             <li id="topNavClient"><a href="client.php"> <i class="glyphicon glyphicon-wrench"></i> Add Client</a></li>
-<?php } ?>              
+            <li id="topNavUser"><a href="user.php"> <i class="glyphicon glyphicon-user-plus"></i> Add User</a></li>
+             <li id="topNavAgent"><a href="agent.php"> <i class="glyphicon glyphicon-user-plus"></i> Add Agent</a></li>
+             <li id="topNavClient"><a href="client.php"> <i class="glyphicon glyphicon-user-plus"></i> Add Client</a></li>
+<?php } ?>   
+             <li id="topNavLogout"><a href="bulk.php"> <i class="glyphicon glyphicon-log-out"></i> Bullk Products</a></li>          
             <li id="topNavLogout"><a href="logout.php"> <i class="glyphicon glyphicon-log-out"></i> Logout</a></li>            
           </ul>
         </li>        

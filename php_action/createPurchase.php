@@ -59,7 +59,7 @@ if($_POST) {
 		
 		
 		
-			 $_POST['item'][$x];							
+										
 				// update product table
 				
 				// add into order_item
@@ -69,10 +69,32 @@ if($_POST) {
 
 				if($x == count($_POST['item'])) {
 					$orderItemStatus = true;
-				}		
-			
+				}
+      
+      
+      
+      $productItemCount=$_POST['quantity'][$x];
+      $productItemName=$_POST['item'][$x];
+      $productItemSql="select * from product where product_name='$productItemName'";
+      
+      if($productItemSqlResult=$connect->query($productItemSql)){
+      if ($productItemSqlResult->num_rows > 0) {
+		$updateProductItemSql="update product set quantity=quantity+$productItemCount where product_name='$productItemName'";
+      if($connect->query($updateProductItemSql)){
+        
+         echo "product did update ";
+      }else{
+        die("Update failed: " . $connect->error);
+      }
+        echo "product does exist ";
 	} // /for quantity
-
+      else{
+         echo "product does not exist ".$_POST['item'][$x];
+         die("something went wrong " . $connect->error);
+       
+      }
+    }
+    }
 	$valid['success'] = true;
 	$valid['messages'] = "Successfully Added";		
 	
@@ -85,3 +107,5 @@ if($_POST) {
  
 } // /if $_POST
 // echo json_encode($valid);
+  
+  ?>

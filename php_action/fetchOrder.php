@@ -3,7 +3,7 @@
 require_once 'core.php';
 
 //$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id WHERE  order_status = 1";
-$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id order by order_status asc";
+$sql = "SELECT orders.order_id, orders.order_date, client_name, client_tel1, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status,orders.payment_place,orders.gstn FROM orders inner join clients on orders.client_id=clients.client_id WHERE  order_status = 1 order by order_status asc";
 $result = $connect->query($sql);
 
 
